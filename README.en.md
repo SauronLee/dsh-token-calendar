@@ -62,7 +62,7 @@ Other options:
 | Option | Command | When |
 |---|---|---|
 | From GitHub | `dsh plugin --profile desktop add git+https://github.com/SauronLee/dsh-token-usage.git` | recommended |
-| Self-packed tarball | `npm pack`, then `dsh plugin --profile desktop add ./dsh-token-usage-0.1.0.tgz` | offline machines |
+| Release tarball | [download v0.1.0](https://github.com/SauronLee/dsh-token-usage/releases/download/v0.1.0/dsh-token-usage-0.1.0.tgz), then `dsh plugin --profile desktop add ./dsh-token-usage-0.1.0.tgz` | offline machines |
 | Local clone | `dsh plugin --profile desktop add /path/to/dsh-token-usage` | hacking on it |
 
 > **A restart is required.** The client plugin manifest is scanned once at boot; HMR only reloads `cordis.patch.yml` rows, not newly installed packages.
@@ -170,6 +170,12 @@ Requires an authenticated browser (same connection gate as every other plugin ro
   "models": [{ "model": "deepseek-v4.1-flash-1017", "calls": 4927, "total": 0 }]
 }
 ```
+
+## Feedback and contributions
+
+- Found a bug, or want another dimension (per session, per workspace, price table)? [Open an issue](https://github.com/SauronLee/dsh-token-usage/issues)
+- PRs are welcome: `lib/index.js` is the fold, `lib/client.js` is one calendar component; run `node --test test/*.test.mjs` first
+- If this saves you some digging, a star helps others find it
 
 ## Uninstall
 

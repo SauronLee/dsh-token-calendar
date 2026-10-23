@@ -63,7 +63,7 @@ Web 版把 `--profile desktop` 换成 `--profile web`。
 | 方式 | 命令 | 适用 |
 |---|---|---|
 | GitHub 直装 | `dsh plugin --profile desktop add git+https://github.com/SauronLee/dsh-token-usage.git` | 推荐 |
-| 自行打包 tgz | `npm pack` 后 `dsh plugin --profile desktop add ./dsh-token-usage-0.1.0.tgz` | 离线机器 |
+| Release 里的 tgz | [下载 v0.1.0](https://github.com/SauronLee/dsh-token-usage/releases/download/v0.1.0/dsh-token-usage-0.1.0.tgz) 后 `dsh plugin --profile desktop add ./dsh-token-usage-0.1.0.tgz` | 离线机器 / 不想用 git |
 | clone 后本地装 | `dsh plugin --profile desktop add /path/to/dsh-token-usage` | 改代码 |
 
 > **装完必须重启 DSH。** 客户端插件清单只在启动时扫描一次；热重载只覆盖 `cordis.patch.yml` 的配置行，不覆盖新包。
@@ -171,6 +171,12 @@ GET /plugins/dsh-token-usage/data[?refresh=1]
   "models": [{ "model": "deepseek-v4.1-flash-1017", "calls": 4927, "total": 0 }]
 }
 ```
+
+## 反馈与贡献
+
+- 遇到问题或有想要的口径（按会话、按工作区、价格表）→ [开 Issue](https://github.com/SauronLee/dsh-token-usage/issues)
+- 欢迎 PR：代码很小，`lib/index.js` 折账 + `lib/client.js` 一个日历组件，改之前跑一遍 `node --test test/*.test.mjs`
+- 如果这个插件帮到了你，点个 Star 是最实在的支持
 
 ## 卸载
 
