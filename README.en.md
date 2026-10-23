@@ -1,4 +1,4 @@
-# dsh-token-usage
+# dsh-token-calendar
 
 **A local token-usage calendar for DeepSeek Harness.** See how many tokens each day and each model actually consumed, straight from your on-disk session logs — no network, no upload.
 
@@ -51,7 +51,7 @@ Requires DSH desktop **0.2.x** and the `dsh` command (the installer links it to 
 ```bash
 # 1. Fully quit DSH first (⌘Q — closing the window is not enough)
 # 2. Install from GitHub
-dsh plugin --profile desktop add git+https://github.com/SauronLee/dsh-token-usage.git
+dsh plugin --profile desktop add git+https://github.com/SauronLee/dsh-token-calendar.git
 # 3. Open DSH → Settings → Token 用量
 ```
 
@@ -61,9 +61,9 @@ Other options:
 
 | Option | Command | When |
 |---|---|---|
-| From GitHub | `dsh plugin --profile desktop add git+https://github.com/SauronLee/dsh-token-usage.git` | recommended |
-| Release tarball | [download v0.1.0](https://github.com/SauronLee/dsh-token-usage/releases/download/v0.1.0/dsh-token-usage-0.1.0.tgz), then `dsh plugin --profile desktop add ./dsh-token-usage-0.1.0.tgz` | offline machines |
-| Local clone | `dsh plugin --profile desktop add /path/to/dsh-token-usage` | hacking on it |
+| From GitHub | `dsh plugin --profile desktop add git+https://github.com/SauronLee/dsh-token-calendar.git` | recommended |
+| Release tarball | [download v0.1.1](https://github.com/SauronLee/dsh-token-calendar/releases/download/v0.1.1/dsh-token-calendar-0.1.1.tgz), then `dsh plugin --profile desktop add ./dsh-token-calendar-0.1.1.tgz` | offline machines |
+| Local clone | `dsh plugin --profile desktop add /path/to/dsh-token-calendar` | hacking on it |
 
 > **A restart is required.** The client plugin manifest is scanned once at boot; HMR only reloads `cordis.patch.yml` rows, not newly installed packages.
 
@@ -71,7 +71,7 @@ If `dsh` is not on your PATH:
 
 ```bash
 "/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" \
-  plugin --profile desktop add git+https://github.com/SauronLee/dsh-token-usage.git
+  plugin --profile desktop add git+https://github.com/SauronLee/dsh-token-calendar.git
 ```
 
 ## Usage
@@ -97,7 +97,7 @@ If `dsh` is not on your PATH:
 ## Privacy
 
 - Reads only `ctx.sessionQuery`; session content is never parsed, copied or uploaded
-- The single endpoint, `GET /plugins/dsh-token-usage/data`, returns aggregated token counts only and sits behind DSH's browser authentication
+- The single endpoint, `GET /plugins/dsh-token-calendar/data`, returns aggregated token counts only and sits behind DSH's browser authentication
 - No telemetry, no outbound requests; data never leaves the machine
 
 ## Compatibility
@@ -128,7 +128,7 @@ No. There is no price table, only token counts.
 ## Development
 
 ```
-dsh-token-usage/
+dsh-token-calendar/
 ├── lib/index.js        # host half: folding, cache, HTTP route (plain ESM, no deps)
 ├── lib/client.js       # browser half: settings section + calendar UI (hand-written bundle)
 ├── cordis.patch.yml    # bundle patch: inserts the host row
@@ -147,7 +147,7 @@ Tests cover the folding helpers (cross-day, cross-model, malformed rows), the ro
 ### Data endpoint
 
 ```
-GET /plugins/dsh-token-usage/data[?refresh=1]
+GET /plugins/dsh-token-calendar/data[?refresh=1]
 ```
 
 Requires an authenticated browser (same connection gate as every other plugin route).
@@ -173,14 +173,14 @@ Requires an authenticated browser (same connection gate as every other plugin ro
 
 ## Feedback and contributions
 
-- Found a bug, or want another dimension (per session, per workspace, price table)? [Open an issue](https://github.com/SauronLee/dsh-token-usage/issues)
+- Found a bug, or want another dimension (per session, per workspace, price table)? [Open an issue](https://github.com/SauronLee/dsh-token-calendar/issues)
 - PRs are welcome: `lib/index.js` is the fold, `lib/client.js` is one calendar component; run `node --test test/*.test.mjs` first
 - If this saves you some digging, a star helps others find it
 
 ## Uninstall
 
 ```bash
-dsh plugin --profile desktop remove dsh-token-usage
+dsh plugin --profile desktop remove dsh-token-calendar
 ```
 
 Then restart DSH.

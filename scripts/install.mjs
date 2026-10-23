@@ -19,7 +19,7 @@ import { homedir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const PACKAGE_NAME = 'dsh-token-usage'
+const PACKAGE_NAME = 'dsh-token-calendar'
 const ROW_ID = 'token-usage'
 const ROW_BLOCK = `\n- insert:\n    - id: ${ROW_ID}\n      name: ${PACKAGE_NAME}\n`
 const STAMP = new Date().toISOString().replace(/[:.]/g, '-')

@@ -1,4 +1,4 @@
-# dsh-token-usage
+# dsh-token-calendar
 
 **DeepSeek Harness 的本地 Token 用量日历。** 在设置里按天、按模型看每个会话消耗了多少 token —— 数据全部来自本机会话日志，不联网、不上传。
 
@@ -52,7 +52,7 @@ DSH 只显示**当前会话**的 token 统计。想知道"这个月我在哪个�
 ```bash
 # 1. 先完全退出 DSH（⌘Q，关窗口不算）
 # 2. 从 GitHub 安装
-dsh plugin --profile desktop add git+https://github.com/SauronLee/dsh-token-usage.git
+dsh plugin --profile desktop add git+https://github.com/SauronLee/dsh-token-calendar.git
 # 3. 打开 DSH → 设置 → Token 用量
 ```
 
@@ -62,9 +62,9 @@ Web 版把 `--profile desktop` 换成 `--profile web`。
 
 | 方式 | 命令 | 适用 |
 |---|---|---|
-| GitHub 直装 | `dsh plugin --profile desktop add git+https://github.com/SauronLee/dsh-token-usage.git` | 推荐 |
-| Release 里的 tgz | [下载 v0.1.0](https://github.com/SauronLee/dsh-token-usage/releases/download/v0.1.0/dsh-token-usage-0.1.0.tgz) 后 `dsh plugin --profile desktop add ./dsh-token-usage-0.1.0.tgz` | 离线机器 / 不想用 git |
-| clone 后本地装 | `dsh plugin --profile desktop add /path/to/dsh-token-usage` | 改代码 |
+| GitHub 直装 | `dsh plugin --profile desktop add git+https://github.com/SauronLee/dsh-token-calendar.git` | 推荐 |
+| Release 里的 tgz | [下载 v0.1.1](https://github.com/SauronLee/dsh-token-calendar/releases/download/v0.1.1/dsh-token-calendar-0.1.1.tgz) 后 `dsh plugin --profile desktop add ./dsh-token-calendar-0.1.1.tgz` | 离线机器 / 不想用 git |
+| clone 后本地装 | `dsh plugin --profile desktop add /path/to/dsh-token-calendar` | 改代码 |
 
 > **装完必须重启 DSH。** 客户端插件清单只在启动时扫描一次；热重载只覆盖 `cordis.patch.yml` 的配置行，不覆盖新包。
 
@@ -72,7 +72,7 @@ Web 版把 `--profile desktop` 换成 `--profile web`。
 
 ```bash
 "/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" \
-  plugin --profile desktop add git+https://github.com/SauronLee/dsh-token-usage.git
+  plugin --profile desktop add git+https://github.com/SauronLee/dsh-token-calendar.git
 ```
 
 ## 使用
@@ -98,7 +98,7 @@ Web 版把 `--profile desktop` 换成 `--profile web`。
 ## 隐私
 
 - 只读取 DSH 的会话历史服务（`ctx.sessionQuery`），不解析、不复制、不上传会话内容
-- 唯一的对外接口是 `GET /plugins/dsh-token-usage/data`，只返回按天/按模型聚合的 token 计数，走 DSH 自带的浏览器认证
+- 唯一的对外接口是 `GET /plugins/dsh-token-calendar/data`，只返回按天/按模型聚合的 token 计数，走 DSH 自带的浏览器认证
 - 没有遥测，没有外部请求，数据不出本机
 
 ## 兼容性
@@ -129,7 +129,7 @@ Web 版把 `--profile desktop` 换成 `--profile web`。
 ## 开发
 
 ```
-dsh-token-usage/
+dsh-token-calendar/
 ├── lib/index.js        # host 侧：折账、缓存、HTTP 路由（纯 ESM，无依赖）
 ├── lib/client.js       # 浏览器侧：设置节、日历 UI（手写 client bundle 协议）
 ├── cordis.patch.yml    # bundle 补丁：往组合树里插一行
@@ -148,7 +148,7 @@ node --test test/*.test.mjs
 ### 数据接口
 
 ```
-GET /plugins/dsh-token-usage/data[?refresh=1]
+GET /plugins/dsh-token-calendar/data[?refresh=1]
 ```
 
 需要浏览器已认证（和其它插件路由一样走 connection 网关）。返回：
@@ -174,14 +174,14 @@ GET /plugins/dsh-token-usage/data[?refresh=1]
 
 ## 反馈与贡献
 
-- 遇到问题或有想要的口径（按会话、按工作区、价格表）→ [开 Issue](https://github.com/SauronLee/dsh-token-usage/issues)
+- 遇到问题或有想要的口径（按会话、按工作区、价格表）→ [开 Issue](https://github.com/SauronLee/dsh-token-calendar/issues)
 - 欢迎 PR：代码很小，`lib/index.js` 折账 + `lib/client.js` 一个日历组件，改之前跑一遍 `node --test test/*.test.mjs`
 - 如果这个插件帮到了你，点个 Star 是最实在的支持
 
 ## 卸载
 
 ```bash
-dsh plugin --profile desktop remove dsh-token-usage
+dsh plugin --profile desktop remove dsh-token-calendar
 ```
 
 然后重启 DSH。

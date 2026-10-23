@@ -1,6 +1,6 @@
 {
-  "name": "dsh-token-usage",
-  "version": "0.1.0",
+  "name": "dsh-token-calendar",
+  "version": "0.1.1",
   "description": "Local token-usage calendar for DeepSeek Harness: per-day, per-model token consumption in Settings",
   "type": "module",
   "main": "lib/index.js",
@@ -43,11 +43,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SauronLee/dsh-token-usage.git"
+    "url": "git+https://github.com/SauronLee/dsh-token-calendar.git"
   },
-  "homepage": "https://github.com/SauronLee/dsh-token-usage#readme",
+  "homepage": "https://github.com/SauronLee/dsh-token-calendar#readme",
   "bugs": {
-    "url": "https://github.com/SauronLee/dsh-token-usage/issues"
+    "url": "https://github.com/SauronLee/dsh-token-calendar/issues"
   },
   "scripts": {
     "test": "node --test test/*.test.mjs",

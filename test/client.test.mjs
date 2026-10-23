@@ -50,7 +50,7 @@ if (runtime !== undefined) {
 
 clientTest('the bundle registers under the package name and exports a plugin', () => {
   assert.equal(loaded.length, 1)
-  assert.equal(entry.id, 'dsh-token-usage')
+  assert.equal(entry.id, 'dsh-token-calendar')
   assert.equal(typeof bundle.apply, 'function')
   assert.deepEqual(bundle.inject, ['slots'])
 })

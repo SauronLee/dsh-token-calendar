@@ -1,5 +1,5 @@
-# dsh-token-usage bundle patch: one host row over the host composition.
+# dsh-token-calendar bundle patch: one host row over the host composition.
 # The browser half is discovered from package.json's `dsh.client`.
 - insert:
     - id: token-usage
-      name: dsh-token-usage
+      name: dsh-token-calendar
